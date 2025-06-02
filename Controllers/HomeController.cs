@@ -535,9 +535,9 @@ public class HomeController : Controller
             }
 
             // Get the access token with the correct permissions
-            _logger.LogInformation("Requesting access token with scopes: User.ReadWrite.All");
+            _logger.LogInformation("Requesting access token with scopes: User.ReadWrite");
             var token = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { 
-                "User.ReadWrite.All"  // Only need User.ReadWrite for these fields
+                "User.ReadWrite"  // Only need User.ReadWrite for these fields
             });
             _logger.LogInformation("Successfully obtained access token");
 
