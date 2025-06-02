@@ -32,13 +32,13 @@ builder.Services
     .AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(options => {
         builder.Configuration.Bind("AzureAd", options);
-        
+
         // Set up configuration
-        var tenantId = "volvogroupextid.onmicrosoft.com";
+        var tenantId = "http://volvogroupextiddev.onmicrosoft.com";//Test :-  "volvogroupextid.onmicrosoft.com";
         
         // Use the generic CIAM authority format
-        options.Authority = $"https://volvogroupextid.ciamlogin.com/{tenantId}";
-        options.MetadataAddress = $"https://volvogroupextid.ciamlogin.com/{tenantId}/v2.0/.well-known/openid-configuration";
+        options.Authority = $"https://volvogroupextiddev.ciamlogin.com/{tenantId}";
+        options.MetadataAddress = $"https://volvogroupextiddev.ciamlogin.com/{tenantId}/v2.0/.well-known/openid-configuration";
         
         // Configure HTTPS requirement
         options.RequireHttpsMetadata = true;
@@ -68,7 +68,7 @@ builder.Services
         options.Scope.Add("profile");
         options.Scope.Add("email");
         options.Scope.Add("User.Read");
-        options.Scope.Add("User.ReadWrite");
+        // options.Scope.Add("User.ReadWrite");
         options.Scope.Add("User.ReadWrite.All");
         options.Scope.Add("Directory.AccessAsUser.All");
         // options.Scope.Add("Directory.ReadWrite.All");
@@ -239,7 +239,7 @@ public class SimpleAuthProvider : IAuthenticationProvider
                 "User.Read",
                 "User.ReadWrite.All",
                 "User.ReadBasic.All",
-                "User.ReadWrite",
+                // "User.ReadWrite",
                 "Directory.AccessAsUser.All",
                 // "Directory.ReadWrite.All"
             });
