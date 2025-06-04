@@ -742,11 +742,12 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error(string message = null)
     {
-        return View(new ErrorViewModel 
-        { 
+        var errorViewModel = new ErrorViewModel
+        {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
-            ErrorMessage = message
-        });
+            ErrorMessage = message // Assign the incoming message to ErrorMessage property
+        };
+        return View(errorViewModel);
     }
 
     [Authorize]
