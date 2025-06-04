@@ -6,9 +6,10 @@
     <title>@ViewData["Title"] - SAMPle Demo App</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/OIDCDemoApp.styles.css" asp-append-version="true" />
 </head>
-<body>
+@* <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -38,6 +39,23 @@
             &copy; 2024 - OIDC Demo App
         </div>
     </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body> *@
+<body>
+    <div class="home-button">
+        <a href="/" title="Go to Home">
+            <img src="~/images/home-icon.svg" alt="Home" class="home-icon" />
+        </a>
+    </div>
+    <div class="container-fluid p-0">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
