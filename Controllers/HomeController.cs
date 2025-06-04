@@ -145,7 +145,7 @@ public class HomeController : Controller
             if (user == null)
             {
                 _logger.LogWarning("Graph API returned null user profile");
-                return View("Error", "Failed to retrieve user profile from Graph API");
+                return Error("Failed to retrieve user profile from Graph API");
             }
 
             // Create user profile from Graph API data
@@ -179,12 +179,12 @@ public class HomeController : Controller
             {
                 errorMessage += $"\nResponse Headers: {string.Join(", ", ex.ResponseHeaders.Select(h => $"{h.Key}={h.Value}"))}";
             }
-            return View("Error", errorMessage);
+            return Error(errorMessage);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error accessing Graph API");
-            return View("Error", $"Error accessing Graph API: {ex.Message}");
+            return Error($"Error accessing Graph API: {ex.Message}");
         }
     }
 
@@ -199,7 +199,7 @@ public class HomeController : Controller
             if (user == null)
             {
                 _logger.LogWarning("Graph API returned null user profile");
-                return View("Error", "Failed to retrieve user profile from Graph API");
+                return Error("Failed to retrieve user profile from Graph API");
             }
 
             _logger.LogInformation("Successfully retrieved user profile from Graph API: {DisplayName}", user.DisplayName);
@@ -225,12 +225,12 @@ public class HomeController : Controller
             {
                 errorMessage += $"\nResponse Headers: {string.Join(", ", ex.ResponseHeaders.Select(h => $"{h.Key}={h.Value}"))}";
             }
-            return View("Error", errorMessage);
+            return Error(errorMessage);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error accessing Graph API");
-            return View("Error", $"Error accessing Graph API: {ex.Message}");
+            return Error($"Error accessing Graph API: {ex.Message}");
         }
     }
 
@@ -278,7 +278,7 @@ public class HomeController : Controller
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error checking OpenID configuration");
-            return View("Error", ex.Message);
+            return Error($"Error checking OpenID configuration: {ex.Message}");
         }
     }
 
@@ -326,7 +326,7 @@ public class HomeController : Controller
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error in diagnostic endpoint");
-            return View("Error", ex.Message);
+            return Error($"Error in diagnostic endpoint: {ex.Message}");
         }
     }
 
@@ -452,7 +452,7 @@ public class HomeController : Controller
             if (user == null)
             {
                 _logger.LogWarning("Graph API returned null user profile");
-                return View("Error", "Failed to retrieve user profile from Graph API");
+                return Error("Failed to retrieve user profile from Graph API");
             }
 
             _logger.LogInformation("Retrieved user data: {@UserData}", new {
@@ -489,12 +489,12 @@ public class HomeController : Controller
             {
                 errorMessage += $"\nResponse Headers: {string.Join(", ", ex.ResponseHeaders.Select(h => $"{h.Key}={h.Value}"))}";
             }
-            return View("Error", errorMessage);
+            return Error(errorMessage);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error accessing Graph API");
-            return View("Error", $"Error accessing Graph API: {ex.Message}");
+            return Error($"Error accessing Graph API: {ex.Message}");
         }
     }
 
@@ -531,7 +531,7 @@ public class HomeController : Controller
             if (currentUser == null)
             {
                 _logger.LogError("Failed to get current user from Graph API");
-                return View("Error", "Failed to get current user information");
+                return Error("Failed to get current user information");
             }
 
             // Get the access token with the correct permissions
@@ -745,7 +745,7 @@ public class HomeController : Controller
         var errorViewModel = new ErrorViewModel
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
-            ErrorMessage = message // Assign the incoming message to ErrorMessage property
+            ErrorMessage = message
         };
         return View(errorViewModel);
     }
@@ -781,12 +781,12 @@ public class HomeController : Controller
         catch (ServiceException ex)
         {
             _logger.LogError(ex, "Graph API Service Exception while checking MFA status");
-            return View("Error", $"Error checking MFA status: {ex.Message}");
+            return Error($"Error checking MFA status: {ex.Message}");
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error checking MFA status");
-            return View("Error", $"Error checking MFA status: {ex.Message}");
+            return Error($"Error checking MFA status: {ex.Message}");
         }
     }
 
