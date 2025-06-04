@@ -34,7 +34,7 @@ builder.Services
         builder.Configuration.Bind("AzureAd", options);
 
         // Set up configuration
-        var tenantId = "http://volvogroupextiddev.onmicrosoft.com";//Test :-  "volvogroupextid.onmicrosoft.com";
+        var tenantId = "volvogroupextiddev.onmicrosoft.com";//Test :-  "volvogroupextid.onmicrosoft.com";
         
         // Use the generic CIAM authority format
         options.Authority = $"https://volvogroupextiddev.ciamlogin.com/{tenantId}";
@@ -176,19 +176,19 @@ builder.Services.AddAuthorization(options =>
 });
 
 // Add HTTPS configuration
-//builder.WebHost.ConfigureKestrel(serverOptions =>
-//{
-//    serverOptions.ConfigureHttpsDefaults(listenOptions =>
-//    {
-//        listenOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
-//    });
-//});
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+    {
+        listenOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+    });
+});
 
 //// Configure HTTPS
-//builder.Services.AddHttpsRedirection(options =>
-//{
-//    options.HttpsPort = 443;
-//});
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 443;
+});
 // Add Microsoft Identity Web UI
 builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
