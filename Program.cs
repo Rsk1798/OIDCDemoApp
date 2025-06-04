@@ -176,19 +176,19 @@ builder.Services.AddAuthorization(options =>
 });
 
 // Add HTTPS configuration
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.ConfigureHttpsDefaults(listenOptions =>
-    {
-        listenOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
-    });
-});
+//builder.WebHost.ConfigureKestrel(serverOptions =>
+//{
+//    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+//    {
+//        listenOptions.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+//    });
+//});
 
-// Configure HTTPS
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 443;
-});
+//// Configure HTTPS
+//builder.Services.AddHttpsRedirection(options =>
+//{
+//    options.HttpsPort = 443;
+//});
 // Add Microsoft Identity Web UI
 builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
